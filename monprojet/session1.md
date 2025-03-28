@@ -1,6 +1,6 @@
 # Introduction aux Contenaires et à la Sécurité 
 
-## Activités Pratiques
+## Enjeux de Sécurité des Containers : Activités Pratiques
 
 ### 1. Lancer un Container simple : 
 
@@ -58,3 +58,18 @@ On va faire afficher dans notre terminal le contenu du fichier **/proc/self/stat
 - **`Uid:    0       0       0       0`** et **`Gid:    0       0       0       0`** → indiquent que le processus s'exécute en tant que **root** dans notre container.
 - **`Seccomp: 2`** → signifie que le container utilise un mode de **filtrage strict**.
 - **`NoNewPrivs: 0`** → **0** signifie que les processus lancés peuvent obtenir de **nouveaux privilèges**.
+
+
+
+
+## Vulnérabilités et Menaces : Activités Pratiques
+
+### 1. Tester un Container avec des Permissions Elevées : 
+
+La commande suivante permet de lancer, avec Docker, un container avec des privilèges élevés : 
+
+```bash
+docker run --rm --privileged alpine sh -c 'echo hello from privileged mode'
+```
+
+La commande a fonctionné et a correctement affiché **"Hello from privileged mode"**. Cependant, cette pratique est dangereuse car le conteneur obtient les mêmes droits qu'un utilisateur **root** sur notre machine. Cela lui permettrait d'effectuer des modifications potentiellement dangereuses sur le système, **augmentant ainsi les risques**.
