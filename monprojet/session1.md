@@ -44,3 +44,17 @@ En sortie on obtient les statistiques d'utilisation des ressources de notre cont
 - La consommation du **CPU** est de **0,00%**.
 
 - L'utilisation de la **mémoire** est de **14,95MB**. 
+
+### 4. Lister les capacités d'un container : 
+
+La commande suivante va permettre de lister les capacités du container **Alpine Linux** : 
+
+```bash
+docker run --rm --cap-add=SYS_ADMIN alpine sh -c "cat /proc/self/status"
+```
+On va faire afficher dans notre terminal le contenu du fichier **/proc/self/status**. 
+
+- **`Name: cat`** → Le nom du processus exécuté **(cat)**.
+- **`Uid:    0       0       0       0`** et **`Gid:    0       0       0       0`** → indiquent que le processus s'exécute en tant que **root** dans notre container.
+- **`Seccomp: 2`** → signifie que le container utilise un mode de **filtrage strict**.
+- **`NoNewPrivs: 0`** → **0** signifie que les processus lancés peuvent obtenir de **nouveaux privilèges**.
