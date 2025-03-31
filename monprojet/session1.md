@@ -114,3 +114,34 @@ La création d'un utilisateur nous permet d'éviter d'exécuter le container en 
 
 ### 4. Restreindre l'accès réseau d'un container : 
 
+On commence par lancer un container en arrière plan : 
+
+```bash
+docker run -d --name mon-container alpine sleep 1000
+```
+Ce container reste actif pendant 1000 secondes. 
+
+On test si ce container a accès à internet : 
+
+```bash
+docker exec mon-container ping -c 4 google.com
+```
+Notre container a bien accès à internet car il ping bien le serveur **Google**.
+
+### 5. BLoquer la connexion internet dans un container : 
+
+La commande suivante permet de restreindre l'accès internet à `mon-container` en déconnectant le container du réseau **bridge** : 
+
+```bash
+docker network disconnect bridge mon-container
+```
+
+### 6. Tester l'accès internet avec par exemple `ping google.com` : 
+
+Nous essayons de ping le **serveur google** avec notre container : 
+
+```bash
+docker exec mon-container ping -c 4 google.com
+```
+En répons on obtient `ping: bad address 'google.com'`. Notre container n'a donc pas réussi à communiquer avec `google.com`. Il n'a donc plus d'accès **internet**. 
+Cette précaution est utile pour limiter l'exposition d'un service qui n'a pas besoin d'internet. Cela renforce la sécurité en empéchant à un container de communiquer avec l'extérieur. 
