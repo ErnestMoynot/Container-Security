@@ -73,3 +73,13 @@ docker run --rm --privileged alpine sh -c 'echo hello from privileged mode'
 ```
 
 La commande a fonctionné et a correctement affiché **"Hello from privileged mode"**. Cependant, cette pratique est dangereuse car le conteneur obtient les mêmes droits qu'un utilisateur **root** sur notre machine. Cela lui permettrait d'effectuer des modifications potentiellement dangereuses sur le système, **augmentant ainsi les risques**.
+
+### 2. Simuler une évasion  de Container : 
+
+On lance un container dans lequel on a monté le système de fichiers de l'hôte, c'est à dire rendre le rendre accessible directement depuis le container. Le container peut donc directement voir et manipuler les fichiers du système principal.
+
+```bash
+docker run --rm -v /:/mnt alpine sh -c 'ls /mnt'
+```
+
+Cette faille de sécurité est très dangereuse. Elle donne un accès total aux fichiers du système hôte. Le container peut **lire, modifier ou supprimer** n'importe quel fichier du système hôte.
