@@ -82,4 +82,35 @@ On lance un container dans lequel on a monté le système de fichiers de l'hôte
 docker run --rm -v /:/mnt alpine sh -c 'ls /mnt'
 ```
 
-Cette faille de sécurité est très dangereuse. Elle donne un accès total aux fichiers du système hôte. Le container peut **lire, modifier ou supprimer** n'importe quel fichier du système hôte.
+Cette faille de sécurité est très dangereuse. Elle donne un accès total aux fichiers du système hôte. Le container peut **lire, modifier ou supprimer** n'importe quel fichier du système hôte. Cela mène à une évasion complète du container.
+
+### 3. Créer une Image Sécurisée : 
+
+On crée fichier **Dockerfile** avec le contenu suivant : 
+
+```bash
+FROM alpine
+RUN adduser -D appuser
+USER appuser
+CMD ["echo", "Container sécurisé!"]
+```
+La commande suivante permet de **construire** l'image basé sur Alpine Linux, avec un nouvel utilisateur `appuser` et une commande par défaut qui affiche `Container sécurisé!` : 
+
+```bash
+docker build -t secure-container .
+```
+Une fois l'image construite on va lancer le container pour voir le message de confirmation (`Container sécurisé!`) : 
+
+```bash
+docker run --rm secure-container
+```
+Pour voir l’ID utilisateur et l’UID de appuser, on exécute cette commande : 
+
+```bash
+docker run --rm secure-container id
+```
+
+La création d'un utilisateur nous permet d'éviter d'exécuter le container en tant que **root**. On passe en mode `appuser`, donc toutes les commandes dans le container seront exécutées avec ce compte. 
+
+### 4. Restreindre l'accès réseau d'un container : 
+
