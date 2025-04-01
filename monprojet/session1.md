@@ -162,7 +162,7 @@ trivy image -f json -o resultat_trivy.json vulnerables/web-dvwa
 ```
 L'image ci-dessous montre une faille de sécurité trouvée par Trivy et classée comme étant **CRITITQUE**. Trivy indique le paquet concerné ainsi qu'une déscription de la faille.
 
-![Screen d'une faille trouvée par Trivy](screen/trivy-analyse.png)
+![Screen d'une faille trouvée par Trivy](screen/Session1/trivy-analyse.png)
 
 D'après **Trivy** il y aurait **1574** failles détectées. Chaque vulnérabilité détectée est décrite par un **identifiant unique** (CVE), les versions du **paquet affecté**, le statut de correction, et des informations sur la gravité et la source de sécurité.
 
@@ -179,7 +179,7 @@ On analyse une image avec **Grype**.
 ```bash
 grype alpine:latest
 ```
-![Résultat d'analyse par Grype](screen/analysy-grype.png)
+![Résultat d'analyse par Grype](screen/Session1/analysy-grype.png)
 
 Les deux outils fonctionnent de manière similaire mais avec des nuances dans la manière dont ils abordent la sécurité des images. Trivy peut offrir des informations plus détaillées sur les dépendances, tandis que Grype peut être plus focalisé sur des vulnérabilités dans les paquets installés.
 
