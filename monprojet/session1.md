@@ -149,3 +149,15 @@ Cette précaution est utile pour limiter l'exposition d'un service qui n'a pas b
 ### 7. Télécharger et Scanner une Image : 
 
 On télécharge une image **vulnérable** pour l'analyser avec `Trivy`. 
+
+```bash
+docker pull vulnerables/web-dvw
+trivy image vulnerables/web-dvwa
+```
+
+Le résultat de l'analyse est écrit dans un fichier json enregistré directement dans le repertoire dans lequel on se trouve. 
+
+```bash
+trivy image -f json -o resultat_trivy.json vulnerables/web-dvwa
+```
+![Screen d'une faille trouvée par Trivy](screen/trivy-analyse.png)
