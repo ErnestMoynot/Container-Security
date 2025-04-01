@@ -145,3 +145,7 @@ docker exec mon-container ping -c 4 google.com
 ```
 En répons on obtient `ping: bad address 'google.com'`. Notre container n'a donc pas réussi à communiquer avec `google.com`. Il n'a donc plus d'accès **internet**. 
 Cette précaution est utile pour limiter l'exposition d'un service qui n'a pas besoin d'internet. Cela renforce la sécurité en empéchant à un container de communiquer avec l'extérieur. 
+
+### 7. Télécharger et Scanner une Image : 
+
+On télécharge une image **vulnérable** pour l'analyser avec `Trivy`. 
