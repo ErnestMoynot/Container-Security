@@ -160,4 +160,17 @@ Le résultat de l'analyse est écrit dans un fichier json enregistré directemen
 ```bash
 trivy image -f json -o resultat_trivy.json vulnerables/web-dvwa
 ```
+L'image ci-dessous montre une faille de sécurité trouvée par Trivy et classée comme étant **CRITITQUE**. Trivy indique le paquet concerné ainsi qu'une déscription de la faille.
+
 ![Screen d'une faille trouvée par Trivy](screen/trivy-analyse.png)
+
+D'après **Trivy** il y aurait **1574** failles détectées. Chaque vulnérabilité détectée est décrite par un **identifiant unique** (CVE), les versions du **paquet affecté**, le statut de correction, et des informations sur la gravité et la source de sécurité.
+
+- `Fixed` : La vulnérabilité a été corrigée dans une version plus récente du package.
+
+- `will_not_fix` : Le fournisseur a décidé de ne pas corriger la vulnérabilité.
+
+- `affected` : Le package est vulnérable, mais aucune mise à jour corrective n’est encore disponible.
+
+### 8. Scanner une Image pour Détecter les Vulnérabilités : 
+
