@@ -174,3 +174,36 @@ D'après **Trivy** il y aurait **1574** failles détectées. Chaque vulnérabili
 
 ### 8. Scanner une Image pour Détecter les Vulnérabilités : 
 
+On analyse une image avec **Grype**.
+
+```bash
+grype alpine:latest
+```
+![Résultat d'analyse par Grype](screen/analysy-grype.png)
+
+Les deux outils fonctionnent de manière similaire mais avec des nuances dans la manière dont ils abordent la sécurité des images. Trivy peut offrir des informations plus détaillées sur les dépendances, tandis que Grype peut être plus focalisé sur des vulnérabilités dans les paquets installés.
+
+## Etude de Cas : Attaque par Elévation de privilège : 
+
+Pour éviter d'être confronté à un tel problème voici quelques mesures à mettre en place : 
+
+-   **Empêcher l'exécution d'un container avec `root`** :  
+
+      Comme nous l'avons vu précédemment, il est possible à l'aide d'un **Dockerfile** de restreindre l'exécution des containers. Il faut spécifier un utilisateur non privilégié dans le dockerfile, ce qui empêche le container de s'exécuter en tant que `root` par défaut.
+      ```bash
+      FROM alpine
+      RUN adduser -D appuser
+      USER appuser
+      ```
+
+- **Isolation du système de fichiers** : 
+
+    Les fichiers sensibles comme les sauvegardes de base de données ne doivent pas être montés directement dans le container. Les fichiers critiques de l'hôte doivent être **isolés** des containers.
+
+- **Limitation de l'accès au réseau** : 
+
+    Sécuriser le réseau du container : Restreindre l’accès réseau d’un container afin qu’il ne puisse pas communiquer librement avec l’extérieur ou l’hôte si cela est possible.
+
+- **L'utilisation d'outils comme `Trivy` ou `Grype`** : 
+
+    Ces outils permettent d'identifier et de corriger de potentiels vulnérabilités dans l'image du container avant le déploiement de celui-ci. Un scan régulier de ces images pourrait prévenir  l'exécution de containers mal configurés avec des permissions excessives ou des vulnérabilités non corrigées, réduisant ainsi le risque d'élévation de privilèges.
