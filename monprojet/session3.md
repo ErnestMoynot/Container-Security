@@ -20,3 +20,27 @@ Une fois le cluster déployé, on va vérifier son état :
 ![Affichage dans le terminal de l'état de (mon-cluster)](screen/Session3/Etat-cluster.png)
 
 Notre cluster a été créé avec succès, comme prévu, avec **2 master nodes** et **2 worker nodes**. Tous les nœuds sont à l'état `Ready`, ce qui signifie qu'ils sont prêts à exécuter des pods et à participer au fonctionnement du cluster.
+
+Pour afficher les namespaces dans un cluster Kubernetes, il faut utiliser la commande suivante :  
+
+```bash
+kubectl get namespaces
+```
+
+Cette commande permet de lister tous les namespaces actifs dans le cluste, ainsi que leur statut et leur âge.
+
+![Utilisation de la commande pour afficher les namespaces](screen/Session3/affichage-namespace.png)
+
+Pour vérifier la version **kubernetes** déployé il faut utiliser la commande suivante : 
+
+```bash
+kubectl version
+```
+
+Dans notre cas on utilise la version client est **1.32.2**.
+La version de Kubernetes qui tourne sur notre cluster est aussi **1.32.2** ce qui signifie que notre client et notre serveur sont bien compatibles.
+
+![Affichage de la version kubernetes](screen/Session3/version-kubernetes.png)
+
+
+### 2. Expérimentation des RBAC : 
