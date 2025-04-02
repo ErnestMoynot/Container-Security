@@ -44,3 +44,43 @@ La version de Kubernetes qui tourne sur notre cluster est aussi **1.32.2** ce qu
 
 
 ### 2. Expérimentation des RBAC : 
+
+On commence par créer un namespace `test-rbac` : 
+
+```bash
+kubectl create ns test-rbac
+```
+
+On crée un fichier `mon-pod.yalm` avec le contenu suivant : 
+
+![Contenu du fichier mon-pod.yalm](screen/Session3/fichier-mon-pod-yaml.png)
+
+On déploie ce pod dans notre namespace : `test-rbac` avec la commande suivante : 
+
+```bash
+kubectl apply -f mon-pod.yaml
+```
+
+![Création du pod au sein de notre namespace : test-rbac](screen/Session3/Creation-pod-dans-test-rbac-namespace.png)
+
+Notre **pod** a bien été créé.
+
+Pour afficher les logs de notre pod il faut utiliser la commande suivante : 
+
+```bash
+kubectl logs nginx -n test-rbac
+```
+
+![Affichage des logs de notre pod](screen/Session3/logs-pods.png)
+
+Création d'un fichier `role-pod-reader.yaml` afin d'avoir un **rôle** capable de lire les pods dans le namespace `test-rbac`. 
+
+On applique le rôle avec la commande suivante : 
+
+```bash
+kubectl apply -f role-pod-reader.yaml
+```
+
+![Image du déploiement de notre role pour lire les pods](screen/Session3/Deploiement-role-lire-pod.png)
+
+Notre rôle est bien créée et maintenant nous voulons l'afficher : 
