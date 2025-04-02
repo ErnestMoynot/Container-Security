@@ -84,3 +84,21 @@ kubectl apply -f role-pod-reader.yaml
 ![Image du déploiement de notre role pour lire les pods](screen/Session3/Deploiement-role-lire-pod.png)
 
 Notre rôle est bien créée et maintenant nous voulons l'afficher : 
+
+```bash
+kubectl get roles -n test-rbac
+```
+Cette commande permet d'afficher le rôle avec son nom et la date et l'heure à laquelle il a été créé.
+
+![Affichage du rôle dans notre terminal](screen/Session3/affichage-role.png)
+
+Maintenant on va venir lier ce rôle à un utilisateur **fictif**, `titi` dans notre cas. 
+
+On commence par créer un fichier YAML (rolebinding-pod-reader.yaml) qui nous permet **d'accorder les permissions définies** dans le rôle `pod-reader` à l'utilisateur `titi` : 
+
+
+![Contenu du fichier rolebinding-pod-reader.yalm](screen/Session3/fichier-yalm-rolebinding.png)
+
+On applique le fichier et on s'assure que `RoleBinding` a bien été créé : 
+
+![Image de l'application du fichier rolebinding-pod-reader.yalm et de la création de RoleBinding](screen/Session3/application-creation-RoleBinding.png)
