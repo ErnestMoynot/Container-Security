@@ -1,5 +1,14 @@
-<<<<<<< HEAD
-# Container Security 
-=======
-# Container-Security
->>>>>>> 0a2659269efcafa86c8db395fde91a7b17dbef13
+# Sécurité des Containers
+
+A l'intérieur du dossier `monprojet` vous retrouverez le compte rendu des 4 sessions : 
+
+```bash
+└── monprojet
+    ├── session1.md
+    ├── session2.md
+    ├── session3.md
+    └── session4.md
+```
+
+
+Bonne lecture : )
