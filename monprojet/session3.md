@@ -102,3 +102,13 @@ On commence par créer un fichier YAML (rolebinding-pod-reader.yaml) qui nous pe
 On applique le fichier et on s'assure que `RoleBinding` a bien été créé : 
 
 ![Image de l'application du fichier rolebinding-pod-reader.yalm et de la création de RoleBinding](screen/Session3/application-creation-RoleBinding.png)
+
+Création de notre utilisateur ficitf **titi** : 
+
+On commence par copier les **certificats CA** depuis le container `mon-cluster-control-plane` : 
+
+![Image de la copie des CA](screen/Session3/Copie-CA.png)
+
+Génération des **clés** et **certificat** pour notre utilisateur `titi` : 
+
+![Image de génération clés et certificat pour utilisateur titi](screen/Session3/Generation-cle-certificat.png)
